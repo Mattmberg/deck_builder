@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commander Calculator</title>
+</head>
+<body>
+  <div class="navbar">
+    <a href="#home">Home</a>
+    <a href="#chart">Chart</a>
+    <a href="#deck">Deck</a>
+  </div>
+  <div class="content">
+    <div class="row">
+      <div class="column">
+        <div id="chart" class="chartCard">
+          <h2>Card types for your deck</h2>
+          <hr>
+          <canvas id="deckTypeChart" width="500" height="200"></canvas>
+
+          <div class="chartContainer">
+            <label for="land_cards">Lands:</label>
+            <input id="land_cards" type="number" value="0" onchange="updateChartOne()"><br>
+            <label for="planeswalker_cards">Planeswalkers:</label>
+            <input id="planeswalker_cards" type="number" value="1" onchange="updateChartOne()"><br>
+            <label for="enchantment_cards">Enchantments:</label>
+            <input id="enchantment_cards" type="number" value="2" onchange="updateChartOne()"><br>
+            <label for="instant_cards">Instants:</label>
+            <input id="instant_cards" type="number" value="3" onchange="updateChartOne()"><br>
+            <label for="creature_cards">Creatures:</label>
+            <input id="creature_cards" type="number" value="4" onchange="updateChartOne()"><br>
+            <label for="sorcery_cards">Sorceries:</label>
+            <input id="sorcery_cards"  type="number" value="5" onchange="updateChartOne()"><br>
+            <label for="artifact_cards">Artifacts:</label>
+            <input id="artifact_cards"  type="number" value="6" onchange="updateChartOne()">
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="chartCard">
+          <h2>Mana base for your deck by color</h2>
+          <hr>
+          <canvas id="myChart" width="500" height="200"></canvas>
+
+          <div class="chartContainer">
+            <label for="black_mana">Black Mana:</label>
+            <input id="black_mana" type="number" value="0" onchange="updateChart()"><br>
+            <label for="blue_mana">Blue Mana:</label>
+            <input id="blue_mana" type="number" value="1" onchange="updateChart()"><br>
+            <label for="red_mana">Red Mana:</label>
+            <input id="red_mana" type="number" value="2" onchange="updateChart()"><br>
+            <label for="green_mana">Green Mana:</label>
+            <input id="green_mana" type="number" value="3" onchange="updateChart()"><br>
+            <label for="white_mana">White Mana:</label>
+            <input id="white_mana" type="number" value="4" onchange="updateChart()"><br>
+            <label for="spells">Spells:</label>
+            <input id="spells"  type="number" value="5" onchange="updateChart()"><br>
+            <label for="artifact">Artifacts:</label>
+            <input id="artifact"  type="number" value="6" onchange="updateChart()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+// Variables for the first chart.
+  var black_mana = document.getElementById('black_mana');
+  var blue_mana = document.getElementById('blue_mana');
+  var white_mana = document.getElementById('white_mana');
+  var red_mana = document.getElementById('red_mana');
+  var green_mana = document.getElementById('green_mana');
+  var spells = document.getElementById('spells');
+  var artifact = document.getElementById('artifact');
+
+
+
+const labels = [
+  'Black Mana',
+  'Blue Mana',
+  'Red Mana',
+  'Green Mana',
+  'White Mana',
+  'Spells',
+  'Artifact'
+];
+const data = {
+  labels: labels,
+  datasets: [{
+    label: 'My First dataset',
+    backgroundColor: ['#000000','#0080ff','#e60000','#2eb82e','#ffffcc','#bf4040','#666699'],
+    borderColor: ['#000000','#0080ff','#e60000','#2eb82e','#ffffcc','#bf4040','#666699'],
+    data: [black_mana.value, blue_mana.value, red_mana.value, green_mana.value, white_mana.value, spells.value, artifact.value],
+  }]
+};
+
+const config = {
+  type: 'pie',
+  data: data,
+  options: {}
+};
+
+// Makes the first chart include the setup of chart and config above this section. 
+const myChart = new Chart(
+  document.getElementById('myChart'),
+  config
+);
+
+// Variables for the second chart.
+var land_cards = document.getElementById('land_cards');
+var planeswalker_cards = document.getElementById('planeswalker_cards');
+var enchantment_cards = document.getElementById('enchantment_cards');
+var instant_cards = document.getElementById('instant_cards');
+var creature_cards = document.getElementById('creature_cards');
+var sorcery_cards = document.getElementById('sorcery_cards');
+var artifact_cards = document.getElementById('artifact_cards');
+
+// Labels for the second chart.
+const labels_one = [
+  'Lands',
+  'Planswalkers',
+  'Enchantments',
+  'Instants',
+  'Creatures',
+  'Sorceries',
+  'Artifacts'
+];
+const data_one = {
+  labels: labels_one,
+  datasets: [{
+    label: 'My Second dataset',
+    backgroundColor: ['#000000','#0080ff','#e60000','#2eb82e','#ffffcc','#bf4040','#666699'],
+    borderColor: ['#000000','#0080ff','#e60000','#2eb82e','#ffffcc','#bf4040','#666699'],
+    data: [land_cards.value, planeswalker_cards.value, enchantment_cards.value, instant_cards.value, creature_cards.value, sorcery_cards.value, artifact_cards.value],
+  }]
+};
+
+// Config for the second chart.
+const config_one = {
+  type: 'pie',
+  data: data_one,
+  options: {}
+}
+
+// Makes the second chart.
+const deckTypeChart = new Chart(
+  document.getElementById('deckTypeChart'),
+  config_one
+);
+
+function updateChart() {
+    updateValues = [black_mana.value, blue_mana.value, red_mana.value, green_mana.value, white_mana.value, spells.value, artifact.value];
+    myChart.data.datasets[0].data = updateValues;
+    myChart.update();
+}
+
+function updateChartOne() {
+    updateValuesOne = [land_cards.value, planeswalker_cards.value, enchantment_cards.value, instant_cards.value, creature_cards.value, sorcery_cards.value, artifact_cards.value];
+    deckTypeChart.data.datasets[0].data = updateValuesOne;
+    deckTypeChart.update();
+}
+
+</script>
+  
+</body>
+</html>
