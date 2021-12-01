@@ -1,0 +1,71 @@
+* {
+    box-sizing: border-box;  
+}
+
+.content {
+    margin-top: 30px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: lightcyan;
+}
+
+.row {
+    margin: 0 -5px;
+}
+
+.row:after {
+    content:"";
+    display: table;
+    clear:both;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 0 10px;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: #66c2ff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    width: 33.33%;
+}
+
+.navbar a:hover {
+    background: #666666;
+    color: white;
+}
+
+.chartCard {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 #e0e0eb;
+    transition: 0.5s;
+    text-align: center;
+    padding: 16px;
+}
+
+.chartCard:hover {
+    box-shadow: 0 8px 16px 0 #e0e0eb
+}
+
+.chartContainer {
+    padding: 4px 16px;
+    text-align: left;
+}
