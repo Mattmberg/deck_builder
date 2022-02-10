@@ -63,6 +63,16 @@
           </div>
         </div>
       </div>
+      <div class="column">
+        <div class="chartCard">
+          <h2></h2>
+          <hr>
+          <canvas id="myChart3" width="500" height="200"></canvas>
+
+          <div class="chartContainer">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -111,6 +121,20 @@ const myChart = new Chart(
   config
 );
 
+// Makes the third chart to display data from first chart in a Polar Area chart.  
+const config = {
+  type: 'polarArea',
+  data: data,
+  options: {
+      responsive: true,
+  }
+};
+
+const myChart3 = new Chart(
+  document.getElementById('myChart3'),
+  config
+);
+  
 // Variables for the second chart.
 var land_cards = document.getElementById('land_cards');
 var planeswalker_cards = document.getElementById('planeswalker_cards');
