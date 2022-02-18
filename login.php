@@ -14,5 +14,8 @@
     <input type="submit">
     </form>
     
+    <?php
+
+    ?>
 </body>
 </html>
